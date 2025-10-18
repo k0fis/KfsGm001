@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>kfs GM-1</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script type="text/javascript" charset="utf-8" src="classes.js"></script>
+    <script type="module">
+      import { ModPlayer } from 'https://atornblad.se/files/js-mod-player/player.js';
+      const play = document.getElementById('play');
+      const stop = document.getElementById('stop');
+
+      const audio = new AudioContext();
+      const player = new ModPlayer(audio);
+      await player.load('spooky_background.mod');
+
+      // Play button
+      play.disabled = false;
+      play.onclick = () => {
+        if (player.playing) return;
+        player.play();
+        play.disabled = true;
+        stop.disabled = false;
+      };
+
+      // Stop button
+      stop.onclick = () => {
+        if (!player.playing) return;
+        player.stop();
+        play.disabled = false;
+        stop.disabled = true;
+      };
+    </script>
+    <style>
+      button:disabled {
+        color: #888;
+      }
+      canvas {
+        border: 1px solid black;
+        width: 99%;
+      }
+    </style>
+
+  </head>
+  <body onload="main()" style="background: #111; color: white; text-align: center;">
+  <h1>kfs GM-1</h1>
+  <p>🎃 Halloween je kouzelný svátek plný strašidel, dýní a sladkostí! Slaví se 31. října.
+    Děti si oblékají kostýmy čarodějnic, duchů nebo kostlivců a chodí po domech s košíky.
+    Když zazvoní, řeknou: „Trick or treat!“ – to znamená „Dejte mi sladkost, nebo provedu lumpárnu!“ 🍬
+    Lidé vyřezávají z dýní strašidelné obličeje a dovnitř dávají svíčku, aby krásně svítily.
+    Je to večer plný smíchu, strašení a zábavy! 👻🕷️🕸️</p>
+  <h2>Halloween: gamesa pro Kubu-D</h2>
+  <p>Ovlada se buď na klávesnici WASD nebo kurzorem myši nebo dotykem. Sbírej diamanty a budeš
+    rychlejší. Příšerky tě zpomalují.
+
+    Music: <button id="play" disabled>PLAY</button><button id="stop" disabled>STOP</button>
+  </p>
+
+
+  <div id="kfs-info"></div>
+  </body>
+</html>
